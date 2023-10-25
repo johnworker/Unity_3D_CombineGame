@@ -24,6 +24,7 @@ public class Cube : MonoBehaviour {
       cubeMeshRenderer.material.color = color ;
    }
 
+   
    public void SetNumber (int number) {
       CubeNumber = number ;
       for (int i = 0; i < 6; i++) {

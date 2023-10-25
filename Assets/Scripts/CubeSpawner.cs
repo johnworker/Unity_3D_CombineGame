@@ -55,12 +55,18 @@ public class CubeSpawner : MonoBehaviour {
       }
 
       Cube cube = cubesQueue.Dequeue () ;
-      cube.transform.position = position ;
-      cube.SetNumber (number) ;
-      cube.SetColor (GetColor (number)) ;
-      cube.gameObject.SetActive (true) ;
-
-      return cube ;
+        if (cube != null)
+        {
+            cube.transform.position = position;
+            //cube.SetNumber(number);
+            cube.SetColor(GetColor(number));
+            cube.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Spawned cube is null");
+        }
+        return cube ;
    }
 
    public Cube SpawnRandom () {
@@ -80,7 +86,14 @@ public class CubeSpawner : MonoBehaviour {
       return (int)Mathf.Pow (2, Random.Range (1, 6)) ;
    }
 
+   
    private Color GetColor (int number) {
       return cubeColors [ (int)(Mathf.Log (number) / Mathf.Log (2)) - 1 ] ;
    }
+
+    /*
+   private Color GetColor (int number) {
+      return cubeColors [ (int)(Mathf.Log (number) / Mathf.Log (2)) - 1 ] ;
+   }*/
+
 }
